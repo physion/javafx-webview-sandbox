@@ -1,0 +1,41 @@
+To set up and load the initial local html file:
+
+    -----
+
+    myBrowser = new MyBrowser(); // MyBrowser extends Region
+    scene = new Scene(myBrowser, 640, 480);
+
+    primaryStage.setScene(scene);
+    primaryStage.show();
+
+    -----
+
+    The constructor of MyBrowser sets up the handlers and WebEngine callbacks to hook into the view.
+    It is also where you would set up JavaFX components over the HTML if you are so inclined.
+
+To call javascript from java:
+  - webEngine.executeScript("clearHello()");
+  - cannot be called until Worker.State.SUCCEEDED
+
+To call java from javascript:
+  webEngine.setJavaScriptEnabled(true);
+  JSObject jso = (JSObject) webEngine.executeScript("window");
+  jso.setMember("app", new JavaApplication());
+
+  Then in JS you can do "app.foo()" where foo() is a member of JavaApplication.
+
+  - cannot be called until Worker.State.SUCCEEDED
+
+To handle alerts (they don't do anything by default!):
+
+  webEngine.setOnAlert(new EventHandler<WebEvent<String>>() {
+    @Override
+    public void handle(WebEvent<String> arg0) {
+      System.out.println("There was an alert: " + arg0.toString());
+    }
+  });
+
+Stylesheets:
+  - You can add a stylesheet to JavaFX elements with:
+      scene.getStylesheets().add("sample/stylesheet.css");
+  - Otherwise, adding regular stylesheets to the HTML works just like normal

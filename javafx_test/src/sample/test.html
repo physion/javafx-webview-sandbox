@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+    #draggable {
+      font-size: 40px;
+    }
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+
+  <script language="javascript" src="jquery-ui/jquery-1.9.1.js"></script>
+  <script language="javascript" src="jquery-ui/ui/jquery-ui.min.js"></script>
+  <script language="javascript" type="text/javascript">
+    $(function () {
+      $("#draggable").draggable();
+      alert("hey");
+    });
+
+    function doAlert(words) {
+      alert(words);
+    }
+
+    alert("hey there");
+//    $("#some_words").click(function() {
+//      $("#some_words").css({'font-size': ($("#some_words").css("font-size") + 1) + "px");
+//    });
+  </script>
+</head>
+<body>
+<div id="draggable" class="ui-widget-content">
+  <p>Touch me</p>
+</div>
+
+<div class="red" id="some_words">Click me</div>
+
+<a href="" onclick="alert('hi2')">No, click me!</a>
+
+<a href="" onclick="app.printWords()">You should actually just click me</a>
+
+<p>
+  <a href="test2.html">Click me to go to test 2</a>
+</p>
+</body>
+</html>
