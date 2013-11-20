@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+  </style>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+
+  <script language="javascript" src="jquery-ui/jquery-1.9.1.js"></script>
+  <script language="javascript" src="jquery-ui/ui/jquery-ui.min.js"></script>
+  <script language="javascript" type="text/javascript">
+
+//    $(function() {
+//      $("#project_viewer").accordion({
+//        collapsible: true,
+//        heightStyle: "content",
+//        activate: function(event, ui) {
+//          console.log(event);
+//          console.log(ui);
+//        }
+//      });
+//    });
+
+    function showJSProjects() {
+      var pv = $("#project_viewer");
+      $("#project_viewer").html("");
+      for (var i = 0; i < projects.size(); i++) {
+        var p = projects.get(i);
+        pv.append("<h3 id='project_" + i + "'>" + p.getName() + "</h3>");
+        pv.append("<div class='small'>" + p.getPurpose() + "</div>")
+      }
+
+      $("#project_viewer").accordion({
+        collapsible: true,
+        heightStyle: "content",
+        activate: function(event, ui) {
+//          console.log(event);
+//          console.log(ui);
+
+          var index = ui.newHeader[0].id.split("_")[1];
+          var measurements = projectMeasurements.get(parseInt(index));
+
+          var pd = $("#project_data");
+          pd.html("");
+          for (var j = 0; j < measurements.size(); j++) {
+            var measurement = measurements.get(j);
+            pd.append("<h3>" + measurement.getName() + "</h3>");
+
+//            var sourceNames = javafx_controller.getSourceNameArray(parseInt(index), j);
+
+//            alert(javafx_controller.test());
+//            alert(sourceNames);
+//            if (sourceNames.length > 0) {
+//              alert("there are sourcenames");
+//              pd.append("<ul id='measurement_" + j + "'></ul>");
+//              for (var k = 0; k < sourceNames.length; k++) {
+//                var sourceName = sourceNames[k];
+//                $("#measurement_" + j).append("<li>" + sourceName + "</li>");
+//              }
+//            }
+//            alert("bye!");
+          }
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <div id="content" class="clearfix" style="margin:1px auto; width:100%; height: 100%;">
+
+    <table style="min-width: 100%; min-height: 100%">
+      <tr>
+        <td bgcolor=#4b4c4e width="30%">
+          <h2>Projects</h2>
+          <div id="project_viewer">
+            <h3 id="project_100">Project</h3>
+            <div>
+              <ul>
+                <li>Source 1</li>
+              </ul>
+            </div>
+          </div>
+        </td>
+        <td bgcolor=#1aa14a width="70%">
+          <h2>Project data</h2>
+          <div id="project_data">
+
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
